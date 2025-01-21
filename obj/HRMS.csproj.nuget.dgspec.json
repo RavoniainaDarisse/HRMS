@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/ravoniaina/DISC/projet/Projet ASP NET MVC/HRMS/HRMS.csproj": {}
+    "/home/ravoniaina/DISC/projet/Projet ASP NET MVC/git/HRMS/HRMS.csproj": {}
   },
   "projects": {
-    "/home/ravoniaina/DISC/projet/Projet ASP NET MVC/HRMS/HRMS.csproj": {
+    "/home/ravoniaina/DISC/projet/Projet ASP NET MVC/git/HRMS/HRMS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/ravoniaina/DISC/projet/Projet ASP NET MVC/HRMS/HRMS.csproj",
+        "projectUniqueName": "/home/ravoniaina/DISC/projet/Projet ASP NET MVC/git/HRMS/HRMS.csproj",
         "projectName": "HRMS",
-        "projectPath": "/home/ravoniaina/DISC/projet/Projet ASP NET MVC/HRMS/HRMS.csproj",
+        "projectPath": "/home/ravoniaina/DISC/projet/Projet ASP NET MVC/git/HRMS/HRMS.csproj",
         "packagesPath": "/home/ravoniaina/.nuget/packages/",
-        "outputPath": "/home/ravoniaina/DISC/projet/Projet ASP NET MVC/HRMS/obj/",
+        "outputPath": "/home/ravoniaina/DISC/projet/Projet ASP NET MVC/git/HRMS/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/ravoniaina/.nuget/NuGet/NuGet.Config"
