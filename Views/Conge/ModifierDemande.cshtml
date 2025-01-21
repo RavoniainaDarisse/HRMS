@@ -1,0 +1,52 @@
+@model HRMS.Models.domaine.CongeUpdate
+
+@{
+    ViewData["Title"] = "Modifier la Demande de Congé";
+}
+<div class="container" style="margin-top: 100px;">
+    <div class="d-flex">
+        <!-- Inclusion de la View Partial pour le Sidebar -->
+        @await Html.PartialAsync("_Sidebar")
+
+        <!-- Formulaire -->
+        <div class="flex-grow-1 p-3 border rounded">
+            <h3 class="mb-3 titleColor">Modifier la Demande de Congé</h3>
+
+            <form asp-action="ModifierDemande" asp-controller="Conge" method="post">
+                <!-- Champ caché pour stocker l'ID -->
+                <input type="hidden" asp-for="Id" />
+
+                <div class="form-group">
+                    <label asp-for="EmployeeId">ID Employé</label>
+                    <input type="text" class="form-control" asp-for="EmployeeId" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="StartDate">Date de début</label>
+                    <input type="date" class="form-control" asp-for="StartDate" required />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EndDate">Date de fin</label>
+                    <input type="date" class="form-control" asp-for="EndDate" required />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Reason">Raison</label>
+                    <textarea class="form-control" asp-for="Reason" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Status">Statut</label>
+                    <select class="form-control" asp-for="Status"
+                        asp-items="Html.GetEnumSelectList<HRMS.Models.LeaveStatus>()"></select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+                <a asp-action="Index" class="btn btn-secondary">Annuler</a>
+            </form>
+
+
+        </div>
+    </div>
+</div>

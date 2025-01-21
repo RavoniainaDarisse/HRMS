@@ -1,0 +1,66 @@
+@model IEnumerable<HRMS.Models.LeaveRequest>
+
+@{
+    ViewData["Title"] = "Liste des demandes";
+}
+
+<div class="container mt-5">
+    <div class="d-flex">
+        <!-- Inclusion de la View Partial pour le Sidebar -->
+        @await Html.PartialAsync("_Sidebar")
+
+        <div class="flex-grow-1 p-3 border rounded bg-white shadow">
+            <h3 class="mb-4 text-primary">Liste des demandes de congé</h3>
+
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Employé</th>
+                            <th>Début</th>
+                            <th>Fin</th>
+                            <th>Raison</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var conge in Model)
+                        {
+                            <tr>
+                                <td>@conge.Id</td>
+                                <td>@conge.Employee.FirstName</td>
+                                <td>@conge.StartDate.ToString("yyyy-MM-dd")</td>
+                                <td>@conge.EndDate.ToString("yyyy-MM-dd")</td>
+                                <td>@conge.Reason</td>
+                                <td>
+                                    @* @if (conge.Status == "Approved")
+                                    {
+                                        <span class="badge bg-success">Approuvé</span>
+                                    }
+                                    else if (conge.Status == "En attente")
+                                    {
+                                        <span class="badge bg-warning text-dark">En attente</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-danger">Rejeté</span>
+                                    } *@
+                                </td>
+                                <td>
+                                    <a asp-action="ModifierDemande" asp-controller="Conge" asp-route-CongeId="@conge.Id"
+                                       class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-edit"></i> Modifier
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
++

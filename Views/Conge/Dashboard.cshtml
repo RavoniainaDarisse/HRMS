@@ -1,0 +1,86 @@
+@model HRMS.Models.ViewModels.DashboardViewModel
+
+<div class="container" style="margin-top: 100px;">
+    <div class="d-flex">
+        @await Html.PartialAsync("_Sidebar")
+
+        <div class="flex-grow-1 p-3 border rounded">
+            <h3 class="mb-3 titleColor">Dashboard conge</h3>
+            <div class="row ">
+                <div class="col-md-3">
+                    <div class="card bg-info text-white text-center">
+                        <div class="card-body">
+                            <h4>Total Congés</h4>
+                            <h2>@Model.TotalConges</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-warning text-white text-center">
+                        <div class="card-body">
+                            <h4>En Attente</h4>
+                            <h2>@Model.EnAttente</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-success text-white text-center">
+                        <div class="card-body">
+                            <h4>Approuvés</h4>
+                            <h2>@Model.Approuves</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-danger text-white text-center">
+                        <div class="card-body">
+                            <h4>Refusés</h4>
+                            <h2>@Model.Refuses</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>📌 5 Dernières Demandes</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Employé</th>
+                        <th>Date de Début</th>
+                        <th>Date de Fin</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.RecentConges != null)
+                    {
+                        @foreach (var conge in Model.RecentConges)
+                        {
+                            <tr>
+                                @if (@conge.Employee != null)
+                                {
+                                    <td>@conge.Employee.FirstName</td>
+
+                                    <td>@conge.StartDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@conge.EndDate.ToString("yyyy-MM-dd")</td>
+                                    <td>
+                                        <span
+                                            class="badge bg-@(conge.Status == HRMS.Models.LeaveStatus.Approved ? "success" : conge.Status == HRMS.Models.LeaveStatus.Pending ? "warning" : "danger")">
+                                            @conge.Status
+                                        </span>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <span>Il n'y a aucune Demandes de conges </span>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="sidebar me-4 p-3">
+    <ul class="list-group">
+        <!-- Gestion des employés -->
+        <a class="list-group-item list-group-item-action" style="border: 0.1px solid #1d1d1d;" data-bs-toggle="collapse" href="#menuEmploye">
+            <i class="fa-solid fa-users"></i>  Employés
+        </a>
+        <div class="collapse" id="menuEmploye">
+            <ul class="list-group">
+                <a asp-controller="Employee" asp-action="AddEmployee" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-user-plus"></i> Ajouter un employé
+                </a>
+                <a asp-controller="Employee" asp-action="Index" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-list"></i> Voir les employés
+                </a>
+            </ul>
+        </div>
+
+        <!-- Département -->
+        <a class="list-group-item list-group-item-action" style="border: 0.1px solid #1d1d1d;" data-bs-toggle="collapse" href="#menuDepartement">
+            <i class="fa-solid fa-building"></i> Départements
+        </a>
+        <div class="collapse" id="menuDepartement">
+            <ul class="list-group">
+                <a asp-controller="Departement" asp-action="Index" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-list"></i> Tous les départements
+                </a>
+                <a asp-controller="Departement" asp-action="AddDepartement" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-plus"></i> Ajouter un département
+                </a>
+            </ul>
+        </div>
+
+        <!-- Gestion de projet -->
+        <a class="list-group-item list-group-item-action" style="border: 0.1px solid #1d1d1d;" data-bs-toggle="collapse" href="#menuProjet">
+            <i class="fa-solid fa-tasks"></i> Gestion des projets
+        </a>
+        <div class="collapse" id="menuProjet">
+            <ul class="list-group">
+                <a asp-controller="Project" asp-action="AddProject" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-folder-plus"></i> Ajouter un projet
+                </a>
+                <a asp-controller="Project" asp-action="Index" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-list"></i> Voir les projets
+                </a>
+            </ul>
+        </div>
+
+        <!-- Congé -->
+        <a class="list-group-item list-group-item-action" style="border: 0.1px solid #1d1d1d;" data-bs-toggle="collapse" href="#menuConge">
+            <i class="fa-solid fa-calendar-alt"></i> Gestion des congés
+        </a>
+        <div class="collapse" id="menuConge">
+            <ul class="list-group">
+                <a asp-controller="Conge" asp-action="DemandeDeConge" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-plus"></i> Demander un congé
+                </a>
+                <a asp-controller="Conge" asp-action="ListDemande" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-pen"></i> Liste de congé
+                </a>
+                <a asp-controller="Conge" asp-action="Dashboard" class="list-group-item list-group-item-action">
+                    <i class="fa-solid fa-trash"></i> Dashboard
+                </a>
+            </ul>
+        </div>
+    </ul>
+</div>

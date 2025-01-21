@@ -1,0 +1,52 @@
+@model HRMS.Models.domaine.DepartementAdd
+
+@{
+    ViewData["Title"] = "AddDepartement";
+}
+
+<div class="container"  style="margin-top: 100px;">
+    <div class="d-flex">
+        <!-- Inclusion de la View Partial pour le Sidebar -->
+        @await Html.PartialAsync("_Sidebar")
+
+        <!-- Formulaire -->
+        <div class="flex-grow-1 p-3 border rounded">
+            <h3 class="mb-3 titleColor">Ajouter un Département</h3>
+            <form asp-action="AddDepartement" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Nom du Département</label>
+                    <input type="text" asp-for="Name" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Code</label>
+                    <input type="text" asp-for="Code" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Budget</label>
+                        <input type="number" asp-for="Budget" class="form-control">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Manager</label>
+                        <select asp-for="ManagerId" class="form-select">
+                            <option value="">Sélectionnez un manager</option>
+                            @foreach(var manager in ViewBag.Manager)
+                            {
+                                <option value="@manager.Id">@manager.FirstName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary ">Enregistrer le département</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+@model IEnumerable<HRMS.Models.Employee>
+
+@{
+    ViewData["Title"] = "Liste des employés";
+}
+
+<div class="container mt-5">
+    <div class="d-flex">
+        @await Html.PartialAsync("_Sidebar")
+
+        <div class="flex-grow-2 p-4 border rounded shadow-sm bg-white" style="max-width: 76%;">
+            <h3 class="mb-4 titleColor">@ViewData["Title"]</h3>
+            <div>
+            <div class="row mt-3">
+                @foreach (var employee in Model)
+                {
+                    <div class="col-4 mb-4">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-center">
+                                <img src="https://img.freepik.com/vecteurs-libre/cercle-bleu-utilisateur-blanc_78370-4707.jpg"
+                                    style="max-width: 95px;" class="rounded-circle mb-3" alt="Photo de @employee.FirstName">
+                                    
+                                <h5 class="card-title">@employee.FirstName @employee.LastName</h5>
+                                <p class="text-muted">@employee.Email</p>
+
+                                <div class="mb-2">
+                                    <span class="badge bg-primary">Employé #@employee.Id</span>
+                                </div>
+
+                                <p><strong>Date de naissance :</strong> @employee.DateOfBirth.ToString("dd/MM/yyyy")</p>
+                                <p><strong>Date d'embauche :</strong> @employee.DateHired.ToString("dd/MM/yyyy")</p>
+
+                                <div class="d-flex justify-content-between">
+                                    <a href="#" class="btn btn-sm btn-outline-primary"><i class="fas fa-edit"></i>
+                                        Modifier</a>
+                                    <a href="#" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash-alt"></i>
+                                        Supprimer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

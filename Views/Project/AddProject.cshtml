@@ -1,0 +1,126 @@
+@model HRMS.Models.domaine.ProjectAdd
+
+@{
+    ViewData["Title"] = "AddProject";
+}
+
+
+<div class="container mt-5">
+    <div class="d-flex">
+        @await Html.PartialAsync("_Sidebar")
+
+        <div class="flex-grow-1 p-4 border rounded shadow-sm bg-white">
+            <h3 class="mb-4 titleColor">Ajouter un Projet</h3>
+
+            <form asp-action="AddProject" method="post" id="projectForm">
+                
+                <!-- Étape 1 -->
+                <div class="step step-1">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Nom du projet</label>
+                        <input type="text" asp-for="Name" class="form-control" placeholder="Entrez le nom du projet">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Code</label>
+                        <input type="text" asp-for="Code" class="form-control" placeholder="Entrez le code">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Décrivez le projet"></textarea>
+                    </div>
+                    <button type="button" class="btn btn-primary next-step">Suivant</button>
+                </div>
+
+                <!-- Étape 2 -->
+                <div class="step step-2 d-none">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Date de début</label>
+                            <div id="startDatePicker"></div>
+                            <input type="hidden" asp-for="StartDate" id="startDateInput">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Date de fin</label>
+                            <div id="endDatePicker"></div>
+                            <input type="hidden" asp-for="EndDate" id="endDateInput">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary prev-step">Précédent</button>
+                    <button type="button" class="btn btn-primary next-step">Suivant</button>
+                </div>
+
+                <!-- Étape 3 -->
+                <div class="step step-3 d-none">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Budget</label>
+                            <input type="text" asp-for="Budget" class="form-control" placeholder="Entrez le budget">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-bold">Client</label>
+                            <input type="text" asp-for="Client" class="form-control" placeholder="Nom du client">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Statut</label>
+                        <select asp-for="Status" class="form-select"
+                            asp-items="@(new SelectList(ViewBag.StatusList, "Id", "Name"))">
+                        </select>
+                    </div>
+
+                    <button type="button" class="btn btn-secondary prev-step">Précédent</button>
+                    <button type="submit" class="btn btn-success">Enregistrer le projet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let currentStep = 1;
+        const steps = document.querySelectorAll(".step");
+        const nextBtns = document.querySelectorAll(".next-step");
+        const prevBtns = document.querySelectorAll(".prev-step");
+
+        function showStep(step) {
+            steps.forEach((el, index) => {
+                el.classList.toggle("d-none", index !== step - 1);
+            });
+        }
+
+        nextBtns.forEach(btn => {
+            btn.addEventListener("click", function () {
+                currentStep++;
+                showStep(currentStep);
+            });
+        });
+
+        prevBtns.forEach(btn => {
+            btn.addEventListener("click", function () {
+                currentStep--;
+                showStep(currentStep);
+            });
+        });
+
+        showStep(currentStep);
+
+        // Initialisation de Flatpickr en mode inline
+        flatpickr("#startDatePicker", {
+            inline: true,  // Affiche directement le calendrier
+            dateFormat: "Y-m-d",
+            onChange: function(selectedDates, dateStr) {
+                document.getElementById("startDateInput").value = dateStr;
+            }
+        });
+
+        flatpickr("#endDatePicker", {
+            inline: true,  // Affiche directement le calendrier
+            dateFormat: "Y-m-d",
+            onChange: function(selectedDates, dateStr) {
+                document.getElementById("endDateInput").value = dateStr;
+            }
+        });
+    });
+</script>

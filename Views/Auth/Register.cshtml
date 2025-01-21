@@ -1,0 +1,26 @@
+@model HRMS.ViewModels.RegisterViewModel
+
+<h2>Inscription</h2>
+<form method="post">
+    <div>
+        <label>Nom Complet</label>
+        <input asp-for="FullName" />
+    </div>
+    <div>
+        <label>Email</label>
+        <input asp-for="Email" value="@ViewBag.Email" readonly />
+    </div>
+    <div>
+        <label>Mot de passe</label>
+        <input asp-for="Password" type="password" />
+    </div>
+    <div>
+        <label>Confirmer le mot de passe</label>
+        <input asp-for="ConfirmPassword" type="password" />
+    </div>
+    <div>
+        <label>Rôle</label>
+        <select asp-for="Role" asp-items="Html.GetEnumSelectList<UserRole>()"></select>
+    </div>
+    <button type="submit">S'inscrire</button>
+</form>

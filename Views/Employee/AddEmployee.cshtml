@@ -1,0 +1,143 @@
+@model HRMS.Models.domaine.EmployeeADD
+
+@{
+    ViewData["Title"] = "Ajouter un Employé";
+}
+
+<div class="container mt-5">
+    <div class="d-flex">
+        @await Html.PartialAsync("_Sidebar")
+
+        <div class="flex-grow-1 p-4 border rounded shadow-sm bg-white">
+            <h3 class="mb-4 titleColor">@ViewData["Title"]</h3>
+
+            
+
+            <form asp-action="AddEmployee" method="post" id="employeeForm">
+                <!-- Étape 1 -->
+                <div class="step step-1">
+                    <div class="text-center mb-4">
+                <i class="bi bi-person-circle" style="font-size: 200px; color: #0d3b66;"></i>
+            </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Prénom</label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Nom</label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <button type="button" class="btn btn-primary next-step">Suivant</button>
+                </div>
+
+                <!-- Étape 2 -->
+                <div class="step step-2 d-none">
+                    <div class="row">
+                        <div class="col-md-6 mb-3 mx-auto">
+                            <label class="form-label">Date de naissance</label>
+                            <div id="dobPicker"></div>
+                            <input type="hidden" asp-for="DateOfBirth" id="dobInput">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Date d'embauche</label>
+                            <div id="hireDatePicker"></div>
+                            <input type="hidden" asp-for="DateHired" id="hireDateInput">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary prev-step">Précédent</button>
+                    <button type="button" class="btn btn-primary next-step">Suivant</button>
+                </div>
+
+                <!-- Étape 3 -->
+                <div class="step step-3 d-none">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Département</label>
+                            <select asp-for="DepartmentId" class="form-select">
+                                <option value="">Sélectionner un département</option>
+                                @foreach (var dept in ViewBag.Departments)
+                                {
+                                    <option value="@dept.Id">@dept.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Projet</label>
+                            <select asp-for="ProjectId" class="form-select">
+                                <option value="">Sélectionner un projet</option>
+                                @foreach (var proj in ViewBag.Projects)
+                                {
+                                    <option value="@proj.Id">@proj.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="ProjectId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-secondary prev-step">Précédent</button>
+                    <button type="submit" class="btn btn-success">Ajouter l'Employé</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let currentStep = 1;
+            const steps = document.querySelectorAll(".step");
+            const nextBtns = document.querySelectorAll(".next-step");
+            const prevBtns = document.querySelectorAll(".prev-step");
+
+            function showStep(step) {
+                steps.forEach((el, index) => {
+                    el.classList.toggle("d-none", index !== step - 1);
+                });
+            }
+
+            nextBtns.forEach(btn => {
+                btn.addEventListener("click", function () {
+                    currentStep++;
+                    showStep(currentStep);
+                });
+            });
+
+            prevBtns.forEach(btn => {
+                btn.addEventListener("click", function () {
+                    currentStep--;
+                    showStep(currentStep);
+                });
+            });
+
+            showStep(currentStep);
+
+            // Initialisation de Flatpickr pour les dates
+            flatpickr("#dobPicker", {
+                inline: true,
+                dateFormat: "Y-m-d",
+                onChange: function(selectedDates, dateStr) {
+                    document.getElementById("dobInput").value = dateStr;
+                }
+            });
+
+            flatpickr("#hireDatePicker", {
+                inline: true,
+                dateFormat: "Y-m-d",
+                onChange: function(selectedDates, dateStr) {
+                    document.getElementById("hireDateInput").value = dateStr;
+                }
+            });
+        });
+    </script>
+}
+

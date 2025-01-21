@@ -1,0 +1,42 @@
+@model HRMS.Models.domaine.CongeSend
+@{
+    ViewData["Title"] = "Demande de Congé";
+}
+
+<div class="container" style="margin-top: 100px;">
+    <div class="d-flex">
+        <!-- Inclusion de la View Partial pour le Sidebar -->
+        @await Html.PartialAsync("_Sidebar")
+
+        <!-- Formulaire -->
+        <div class="flex-grow-1 p-3 border rounded">
+            <h3 class="mb-3 titleColor">Demande de conge</h3>
+            <form action="DemandeDeConge" method="post">
+                <input type="hidden" name="emailRecup" value="@ViewBag.email" />
+                <div class="form-group">
+                    <label for="Reason">Raison du congé</label>
+                    <textarea asp-for="Reason" class="form-control" rows="4" id="Reason"></textarea>
+                    <span asp-validation-for="Reason" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="StartDate">Date de début</label>
+                    <input asp-for="StartDate" type="date" class="form-control" id="StartDate" />
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="EndDate">Date de fin</label>
+                    <input asp-for="EndDate" type="date" class="form-control" id="EndDate" />
+                    <span asp-validation-for="EndDate" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Soumettre la demande</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

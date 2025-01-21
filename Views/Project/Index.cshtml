@@ -1,0 +1,84 @@
+@model IEnumerable<HRMS.Models.Project>
+
+@{
+    ViewData["Title"] = "Gestion des projets";
+
+    var statusList = new[]
+    {
+ProjectStatus.NotStarted,
+ProjectStatus.InProgress,
+ProjectStatus.Completed,
+ProjectStatus.Cancelled
+};
+
+    var statusColors = new Dictionary<ProjectStatus, string>
+{
+{ ProjectStatus.NotStarted, "secondary" }, // Gris
+{ ProjectStatus.InProgress, "warning" }, // Jaune
+{ ProjectStatus.Completed, "success" }, // Vert
+{ ProjectStatus.Cancelled, "danger" } // Rouge
+};
+}
+
+<div class="container mt-5">
+    <div class="d-flex">
+
+        <div class="flex-grow-1 p-4 border rounded shadow-sm bg-white">
+            <h3 class="mb-4 titleColor">Liste des Projet</h3>
+
+
+            <div class="container mt-4">
+             <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 class="fw-bold">Gestion des projets</h2>
+                <a href="javascript:history.back()" class="btn btn-outline-secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Retour
+                </a>
+            </div>
+
+
+                <div class="row d-flex justify-content-around">
+                    @foreach (var status in statusList)
+                    {
+                        <div class="col-md-3">
+                            <div class="card shadow-sm">
+                                <div class="card-header text-center fw-bold bg-@statusColors[status] text-white">
+                                    @status.ToString()
+                                </div>
+                                <div class="card-body trello-column">
+                                    @foreach (var project in Model.Where(p => p.Status == status))
+                                    {
+                                        <div class="project-card p-3 mb-3 border rounded bg-white">
+                                            <h5 class="fw-bold">@project.Name</h5>
+                                            <p class="text-muted">@project.Description</p>
+
+                                            <!-- Affichage du badge selon le statut -->
+                                            <span class="badge bg-@statusColors[project.Status]">
+                                                @(project.Status == ProjectStatus.NotStarted ? "Non démarré" :
+                                                    project.Status.ToString())
+                                            </span>
+
+                                            <!-- Formulaire de modification du statut -->
+                                            <form method="post" asp-action="ChangeStatus" asp-route-id="@project.Id">
+                                                <select name="newStatus" class="form-select mt-2">
+                                                    @foreach (var s in statusList)
+                                                    {
+                                                        <option value="@s" selected="@(s == project.Status)">
+                                                            @s.ToString()
+                                                        </option>
+                                                    }
+                                                </select>
+                                                <button type="submit" class="btn btn-sm btn-outline-primary mt-2 w-100">
+                                                    Modifier le statut
+                                                </button>
+                                            </form>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

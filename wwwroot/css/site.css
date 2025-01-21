@@ -1,0 +1,278 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  font-family: 'Poppins';
+}
+.btn-primary {
+  color: #fff;
+  background-color:  #0d3b66;
+  border-color:  #0d3b66;
+}
+.titleColor{
+  background-color: #0d3b66;
+  color: #fff;
+  padding: 20px 13px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.sidebar .list-group-item {
+  background-color: transparent;
+  border: none;
+  font-weight: 600;
+  color: #1d1d1d;
+  padding: 12px;
+  transition: all 0.3s ease;
+}
+
+.sidebar .list-group-item:hover,
+.sidebar .list-group-item.active {
+  background-color: #0d3b66;
+  /* Bleu foncé */
+  color: #ffffff;
+  border-radius: 6px;
+}
+
+.sidebar .list-group-item i {
+  color: #0d3b66;
+  margin-right: 8px;
+}
+
+.sidebar .collapse .list-group-item {
+  padding-left: 30px;
+  font-weight: normal;
+  color: #555;
+}
+
+.sidebar .collapse .list-group-item:hover {
+  background-color: #f8f9fa;
+  color: #000;
+  border-radius: 6px;
+}
+
+.containercenter {
+  margin: 0 50px;
+}
+.search-wrapper {
+width: 6000px;
+margin: 0 auto;
+}
+
+.search-box {
+position: relative;
+background: white;
+border-radius: 30px;
+/* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); */
+transition: all 0.3s ease;
+}
+
+
+.search-input {
+border: 2px solid #eee;
+border-radius: 30px;
+padding: 15px 25px;
+padding-right: 50px;
+width: 100%;
+transition: all 0.3s ease;
+}
+
+.search-input:focus {
+border-color: transparent;
+box-shadow: none;
+}
+
+.search-icon {
+position: absolute;
+right: 20px;
+top: 50%;
+transform: translateY(-50%);
+color: #666;
+transition: all 0.3s ease;
+}
+
+.search-box:focus-within .search-icon {
+color: #007bff;
+}
+
+.suggestions {
+position: absolute;
+top: 100%;
+left: 0;
+right: 0;
+background: white;
+border-radius: 15px;
+margin-top: 10px;
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+opacity: 0;
+transform: translateY(-10px);
+transition: all 0.3s ease;
+z-index: 1000;
+}
+
+.search-box:focus-within .suggestions {
+opacity: 1;
+transform: translateY(0);
+}
+
+.suggestion-item {
+padding: 12px 20px;
+cursor: pointer;
+transition: all 0.2s ease;
+}
+
+.suggestion-item:hover {
+background: #f8f9fa;
+}
+
+.suggestion-item i {
+margin-right: 10px;
+color: #666;
+}
+
+.recent-searches {
+color: #666;
+font-size: 0.8rem;
+padding: 10px 20px;
+background: #f8f9fa;
+border-radius: 15px 15px 0 0;
+}
+
+
+/* Container pour les cartes */
+.department-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Nombre de colonnes responsive */
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Design de chaque carte */
+.department-card {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* transition: all 0.3s ease; */
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  /* justify-content: space-between; */
+}
+
+/* Style de l'image à gauche de la carte */
+.department-card-image {
+  width: 80px;
+  height: 107px;
+  /* margin-right: 20px; */
+  overflow: hidden;
+  /* border-radius: 50%; Pour donner une forme ronde à l'image */
+}
+
+/* Styliser l'image à l'intérieur du div */
+.department-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Assurez-vous que l'image couvre bien la zone sans déformer */
+}
+
+/* Effet au survol de la carte */
+.department-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenu de la carte */
+.card-content {
+  padding: 20px;
+}
+
+/* Titre de la carte */
+.card-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Description de la carte */
+.card-description {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 15px;
+}
+
+/* Détails sous forme de liste */
+.card-details {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.card-item {
+  margin-bottom: 8px;
+}
+
+/* Souligner les titres dans les détails */
+.card-item strong {
+  font-weight: bold;
+}
+
+.btnDetails {
+  position: absolute;
+  left: 350px;
+  top: 55px;
+}
+
+.btnDetails button {
+  background-color: #495057;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 9px;
+}
+
+.trello-column {
+  min-height: 300px;
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.project-card {
+  transition: transform 0.2s ease-in-out;
+  cursor: grab;
+  border-left: 4px solid #007bff;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
